@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <!-- BITCOIN PRICInG PANELS ROW -->
+    <!-- BITCOIN PRICING PANELS ROW -->
     <div class="row row-bitcoin">
       <div v-for="(listing) in listings" class="col-xs-12 col-sm-6 col-lg-4">
         <transition name="slide-fade" mode="out-in">
@@ -71,7 +71,8 @@
                 <div class="col-xs-4">
                   <p class="small"> Buy </p>
                   <p class="price"> {{ listing.info.buy | formatMoney }} </p>
-                </div><div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
                   <p class="small"> Sell </p>
                   <p class="price"> {{ listing.info.sell | formatMoney }} </p>
                 </div>
@@ -150,8 +151,6 @@
             if( this.selected === 'desc')
               return this.listings.reverse()
             return this.listings
-
-
 
           }
         }
