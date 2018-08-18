@@ -20,8 +20,9 @@
               <!-- SORT BY CATEGORY -->
               <div class="col-xs-12 col-sm-6 col-lg-3">
                 <div class="input-group input-group-sm">
-                  <div class="input-group-btn">
-                    <button class="btn btn-default text-uppercase" :class="{active:category == 'currency'}"  v-on:click="alphabetizeList( 'currency' )" > Currency Denom </button>
+                  <label class="form-control"> Sort: </label> 
+                  <div class="input-group-btn">              
+                    <button class="btn btn-default text-uppercase" :class="{active:category == 'currency'}"  v-on:click="alphabetizeList( 'currency' )" > Currency Name </button>
                     <button class="btn btn-default text-uppercase" :class="{active:category == 'last'}"  v-on:click="sortList( 'last' )" >  Last </button>
                     <button class="btn btn-default text-uppercase" :class="{active:category == 'buy'}"  v-on:click="sortList( 'buy' )" >  Buy </button>
                     <button class="btn btn-default text-uppercase" :class="{active:category == 'sell'}"  v-on:click="sortList( 'sell' )" >  Sell </button>
@@ -32,9 +33,10 @@
               <!-- SORT BY ORDER -->
               <div class="col-xs-12 col-sm-6 col-lg-3  col-lg-offset-6 text-right">
                 <div class="input-group input-group-sm">
+                  <label class="form-control"> Order: </label> 
                   <div class="input-group-btn">
-                    <button class="btn btn-default" :class="{active:selected == 'asc'}" v-on:click="reverseList( 'asc' )" > <i class="icon-arrow-up"></i>  </button>
-                    <button class="btn btn-default"  :class="{active:selected == 'desc'}" v-on:click="reverseList( 'desc' )" >  <i class="icon-arrow-down"></i> </button>
+                    <button class="btn btn-default" :class="{active:selected == 'asc'}" v-on:click="reverseList( 'asc' )" > ASC <i class="icon-arrow-up"></i>  </button>
+                    <button class="btn btn-default"  :class="{active:selected == 'desc'}" v-on:click="reverseList( 'desc' )" > DESC  <i class="icon-arrow-down"></i> </button>
                   </div>
                 </div>
               </div>
@@ -167,6 +169,10 @@
   }
 }
 .row-paging {
+  label {
+    border:none;
+    z-index:0;
+  }
   .btn {
     margin-top: 0;
     &.active {
