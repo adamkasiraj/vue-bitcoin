@@ -91,6 +91,7 @@
 
 <script>
     import axios from "axios";
+    import countrydata from "country-data"
 
     export default {
         name: 'BitcoinTracker',
@@ -110,8 +111,7 @@
             return value.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
           },
           currencyName ( value ) {
-            var currencies  = require('country-data').currencies
-            return currencies[ value ].name
+            return countrydata.currencies[ value ].name
           },
         },
         methods: {
