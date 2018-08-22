@@ -1,35 +1,25 @@
 <template>
-    <div class="col-xs-12 col-sm-6 col-lg-4">
-        <div class="panel panel-bitcoin">
-            <div class="panel-heading">
-                <div class="panel-title">
-                <div class="row">
-                    <div class="col-xs-4 text-left">
-                    <p> <span class="currency"> {{ listing.currency }} </span> <span class="symbol"> ( {{ listing.info.symbol }} ) </span>  </p>
-                    </div>
-                    <div class="col-xs-8 text-right">
-                    <p class="currency-full small"> {{ listing.currency | currencyName }} </p>
-                    </div>
-                </div>
-                </div>
-
+    <div class="card card-bitcoin">
+        <div class="card-title d-flex">
+            <div class="mr-auto text-left">
+                <p> <span class="currency"> {{ listing.currency }} </span> <span class="symbol"> ( {{ listing.info.symbol }} ) </span>  </p>
             </div>
-            <div class="panel-body">
-                <div class="row row-prices text-center">
-                    <div class="col-xs-4">
-                        <p class="small"> Last </p>
-                        <p class="price"> {{ listing.info.last | formatMoney }} </p>
-                    </div>
-                    <div class="col-xs-4">
-                        <p class="small"> Buy </p>
-                        <p class="price"> {{ listing.info.buy | formatMoney }} </p>
-                    </div>
-                    <div class="col-xs-4">
-                        <p class="small"> Sell </p>
-                        <p class="price"> {{ listing.info.sell | formatMoney }} </p>
-                    </div>
-                </div>
-
+            <div class="ml-auto text-right">
+                <p class="currency-full small"> {{ listing.currency | currencyName }} </p>
+            </div>
+        </div>
+        <div class="card-body d-flex justify-content-center">
+            <div class="price-listing text-center">
+                <p class="small"> Last </p>
+                <p class="price"> {{ listing.info.last | formatMoney }} </p>
+            </div>
+            <div class="price-listing text-center">
+                <p class="small"> Buy </p>
+                <p class="price"> {{ listing.info.buy | formatMoney }} </p>
+            </div>
+            <div class="price-listing text-center">
+                <p class="small"> Sell </p>
+                <p class="price"> {{ listing.info.sell | formatMoney }} </p>
             </div>
         </div>
     </div>
@@ -58,29 +48,53 @@
 
 
 <style lang="scss" scoped>
+.card-bitcoin{
+    width:100%;
+    @media (min-width: 576px) {
+        width: 49%;
+    }
+    @media (min-width: 992px) {
+        width: 32%;
+    }
+    margin-bottom:10px;
 
-.panel-bitcoin {
-  p {
-    margin-bottom: 0;
-  }
-  .panel-heading {
-    background: #003B53;
-    color: #fff;
-  }
-  .currency {
-    font-weight: bold;
-    font-size: 16px;
-    color: #fff;
-  }
-  .symbol {
-    color: #fff;
-  }
-  .currency-full{
-    color: #fff;
-  }
-  .price {
-    font-weight:bold;
-    font-size:16px;
-  }
+    p {
+        margin-bottom:0;
+    }
+
+    .card-title {
+        padding: 10px;
+        background: #003B53;
+        color: #fff;
+
+        .currency-full{
+            color: #fff;
+        }
+
+    }
+    .price-listing {
+        padding: 5px 10px;
+        .price {
+            font-weight:bold;
+            font-size:16px;
+        }
+    }
 }
+
+//FLEXBOX UTIL CLASSES
+.d-flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+.mr-auto {
+    margin-right: auto;
+}
+.justify-content-center {
+    -webkit-box-pack: distribute;
+    justify-content: space-around;
+}
+
 </style>
