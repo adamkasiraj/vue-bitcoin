@@ -5,12 +5,14 @@
 </template>
 
 <script>
-import BitcoinTracker from './components/BitcoinTracker'
+import BitcoinTracker from '@/components/BitcoinTracker'
+import BitcoinCard from '@/components/BitcoinCard'
 
 export default {
   name: 'App',
   components: {
-    BitcoinTracker
+    BitcoinTracker,
+    BitcoinCard
   }
 }
 </script>

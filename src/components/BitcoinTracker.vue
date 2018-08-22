@@ -45,56 +45,28 @@
         </div>
       </div>
     </div>
-
+    
     <!-- BITCOIN PRICING PANELS ROW -->
-    <div class="row row-bitcoin">
-      <div v-for="(listing) in listings" class="col-xs-12 col-sm-6 col-lg-4">
-        <transition name="slide-fade" mode="out-in">
-          <div class="panel panel-bitcoin" :key="listing.currency" >
-            <div class="panel-heading">
-              <div class="panel-title">
-                <div class="row">
-                  <div class="col-xs-4 text-left">
-                    <p> <span class="currency"> {{ listing.currency }} </span> <span class="symbol"> ( {{ listing.info.symbol }} ) </span>  </p>
-                  </div>
-                  <div class="col-xs-8 text-right">
-                    <p class="currency-full small"> {{ listing.currency | currencyName }} </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="panel-body">
-              <div class="row row-prices text-center">
-                <div class="col-xs-4">
-                  <p class="small"> Last </p>
-                  <p class="price"> {{ listing.info.last | formatMoney }} </p>
-                </div>
-                <div class="col-xs-4">
-                  <p class="small"> Buy </p>
-                  <p class="price"> {{ listing.info.buy | formatMoney }} </p>
-                </div>
-                <div class="col-xs-4">
-                  <p class="small"> Sell </p>
-                  <p class="price"> {{ listing.info.sell | formatMoney }} </p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </transition>
-      </div>
+    <div class="row-bitcoin">
+      <BitcoinCard
+        v-for="listing in listings"
+        v-bind:key="listing.currency" 
+        v-bind:listing="listing"
+      ></BitcoinCard>
     </div>
       
   </div>
 </template>
 
 <script>
-    import axios from "axios";
-    import countrydata from "country-data"
+    import axios from 'axios'
+    import BitcoinCard from '@/components/BitcoinCard'
 
     export default {
         name: 'BitcoinTracker',
+        components: {
+          BitcoinCard
+        },
         data () {
             return {
                 selected: null,
@@ -103,16 +75,9 @@
                 timestamp: null
             }
         },
+        props: [ 'listing' ],
         mounted() {
             this.getData()       
-        },
-        filters: {
-          formatMoney (value) {
-            return value.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-          },
-          currencyName ( value ) {
-            return countrydata.currencies[ value ].name
-          },
         },
         methods: {
           getData () {
@@ -181,40 +146,5 @@
     }
   }
 }
-.panel-bitcoin {
-  p {
-    margin-bottom: 0;
-  }
-  .panel-heading {
-    background: #003B53;
-    color: #fff;
-  }
-  .currency {
-    font-weight: bold;
-    font-size: 16px;
-    color: #fff;
-  }
-  .symbol {
-    color: #fff;
-  }
-  .currency-full{
-    color: #fff;
-  }
-  .price {
-    font-weight:bold;
-    font-size:16px;
-  }
 
-}
-
-.slide-fade-enter-active {
-  transition: all .8s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateX(10px);
-  opacity: 0;
-}
 </style>
